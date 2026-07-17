@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — Elle Fitz Anderson</title>
+<meta name="description" content="Free, public tools for product leaders from Elle Fitz Anderson — the Product Leadership Toolkit on GitHub and the AI Vocabulary field guide.">
+<link rel="canonical" href="https://www.andersonco.uk/resources.html">
+<link rel="icon" type="image/png" href="assets/leaf-oak.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="index.html" aria-label="Anderson &amp; Co home">
+      <img src="assets/leaf-oak.png" alt="">
+      <span class="wm-text">Elle Fitz Anderson</span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="about.html">About</a>
+      <a href="resources.html" aria-current="page">Resources</a>
+      <a href="writing.html">Writing</a>
+      <a href="ai-vocabulary.html">AI Vocabulary</a>
+      <a class="btn-book" href="https://outlook.office.com/book/VitualMeetingsAtAndersonCo@andersonco.uk/?ismsaljsauthenabled">Book</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-head leafwrap">
+    <img class="leaf-float" src="assets/leaf-maple.png" alt="" style="width:170px; right:2%; top:-20px; transform:rotate(-14deg);">
+    <div class="wrap">
+      <p class="eyebrow">Resources</p>
+      <h1>Tools you can open,<br>not claims you must trust<span class="dot">.</span></h1>
+      <p class="lede" style="margin-top:10px;">Everything here is free and public by design. The tailoring — how each tool bends to a specific organisation — is the part I keep in the kit bag.</p>
+    </div>
+  </section>
+
+  <section style="padding:30px 0 80px;">
+    <div class="wrap">
+      <div class="res-grid">
+        <div class="res-card reveal">
+          <img class="leaf-mark" src="assets/leaf-oak.png" alt="">
+          <h3>The Product Leadership Toolkit</h3>
+          <p>Diagnostics, strategy and coaching resources for product leaders, maintained in the open on GitHub — starting with the Product Organisation Health Check, with capability assessments and workshop kits to follow. Fork it, use it, tell me what broke.</p>
+          <a class="btn-ghost" href="https://github.com/ellefitzanderson/product-leadership-toolkit">Open the toolkit →</a>
+        </div>
+        <div class="res-card reveal">
+          <img class="leaf-mark" src="assets/leaf-simple.png" alt="">
+          <h3>The AI Vocabulary Every Product Leader Needs</h3>
+          <p>A field guide to twenty-seven AI terms, organised by where you'll actually meet them — in discovery, in delivery, in the risk register, in the boardroom. Each entry ends with the question worth asking in your next meeting.</p>
+          <a class="btn-ghost" href="ai-vocabulary.html">Open the field guide →</a>
+        </div>
+        <div class="res-card reveal">
+          <img class="leaf-mark" src="assets/leaf-sprig.png" alt="">
+          <h3>Field notes</h3>
+          <p>Working essays on product craft, ways of working, and AI-era practice — undated, unattributed, and drawn from the inside of real buildings. Each piece pairs with a tool where one exists.</p>
+          <a class="btn-ghost" href="writing.html">Read the notes →</a>
+        </div>
+        <div class="res-card reveal">
+          <img class="leaf-mark" src="assets/leaf-maple.png" alt="">
+          <h3>Coming to this shelf</h3>
+          <p>An AI-era product capability assessment, FigJam workshop templates, and a build guide for rubric-based training assistants. If you'd like these when they land, request my CV below — requesters hear first.</p>
+          <a class="btn-ghost" href="index.html#cv">Join the list →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site leafwrap">
+  <img class="leaf-float" src="assets/leaf-simple.png" alt="" style="width:90px; right:6%; top:-16px; transform:rotate(30deg);">
+  <div class="wrap foot-inner">
+    <div class="foot-links">
+      <a href="mailto:elle@andersonco.uk">elle@andersonco.uk</a>
+      <a href="https://www.linkedin.com/in/ellefitzanderson">LinkedIn</a>
+      <a href="https://github.com/ellefitzanderson">GitHub</a>
+    </div>
+    <span class="foot-fine">© 2026 Elle Fitz Anderson · Anderson &amp; Co · United Kingdom · Designed and built by me, with Claude — <a href="https://github.com/ellefitzanderson/ellefitzanderson.github.io">source on GitHub</a></span>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<!-- INTEGRATION SLOT: paste Cloudflare Web Analytics snippet here -->
+<!-- INTEGRATION SLOT: paste Tawk.to chat snippet here -->
+</body>
+</html>

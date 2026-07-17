@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — Elle Fitz Anderson</title>
+<meta name="description" content="Field notes from Elle Fitz Anderson — undated, unattributed essays on product craft, ways of working, and AI-era practice.">
+<link rel="canonical" href="https://www.andersonco.uk/writing.html">
+<link rel="icon" type="image/png" href="assets/leaf-oak.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="index.html" aria-label="Anderson &amp; Co home">
+      <img src="assets/leaf-oak.png" alt="">
+      <span class="wm-text">Elle Fitz Anderson</span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="about.html">About</a>
+      <a href="resources.html">Resources</a>
+      <a href="writing.html" aria-current="page">Writing</a>
+      <a href="ai-vocabulary.html">AI Vocabulary</a>
+      <a class="btn-book" href="https://outlook.office.com/book/VitualMeetingsAtAndersonCo@andersonco.uk/?ismsaljsauthenabled">Book</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-head leafwrap">
+    <img class="leaf-float" src="assets/leaf-sprig.png" alt="" style="width:190px; right:-40px; top:-24px; transform:rotate(16deg);">
+    <div class="wrap">
+      <p class="eyebrow">Writing</p>
+      <h1>Field notes<span class="dot">.</span></h1>
+
+      <div class="preface">
+        <p><strong style="color:var(--cream);">Before you read anything here.</strong> I'm an American who has lived and worked in the UK long enough that I still occasionally reach for the wrong word — I've <em>prioritized</em> and <em>prioritised</em> in the same document, and I've stopped apologising (apologizing?) for it. If the spelling wobbles between posts, that's not a bot — that's a mid-Atlantic career.</p>
+        <p>These notes are undated and unattributed on purpose: everything comes from products I actually shipped and teams I actually led, told at a level that respects the buildings I worked in. Where an idea came from someone else, I say so.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom:70px;">
+    <div class="wrap">
+
+      <article class="post" id="ml-before-the-rush">
+        <span class="post-kicker">Field note · AI-era practice</span>
+        <h2>I shipped machine learning before the gold rush. Here's what it taught me that the rush keeps forgetting.</h2>
+        <div class="prose">
+          <p>Years before there was a chatbot to demo, there was an unglamorous customer problem: a physical product with thousands of tiny components, and a miserable process for identifying the one that had gone missing. The answer we built was a computer-vision product — point your camera at the part, and the model identifies it, links it to the catalogue, and turns a support moment into a commercial one. I was accountable for it from discovery through launch and growth, with a data-science team doing brilliant work; it scaled to millions of users and held satisfaction scores most products never see.</p>
+          <p>Nothing about that era was hype-assisted. Nobody adopted your product because AI was exciting; it worked or it didn't. That constraint taught lessons the current gold rush actively obscures.</p>
+          <h3>The model was never the product</h3>
+          <p>The hard part wasn't the vision model. It was everything around it: what happens on a failed identification, how confident is confident enough to show a match, what the user does next. Today I watch teams demo a model and call it a product. The model is an ingredient. The product is the failure states, the confidence thresholds, and the moment after.</p>
+          <h3>If AI doesn't shorten the path to something the customer already wanted, it's a toy</h3>
+          <p>Nobody wanted "AI." They wanted their missing part. The technology's only job was to collapse a painful process into a photograph. My test hasn't changed: describe the customer's outcome without mentioning the technology. If you can't, you have a demo.</p>
+          <h3>Distribution ate more of my time than data science</h3>
+          <p>Scaling to millions came from deeply untrendy work with marketing on conversion. The teams shipping real AI value now still spend most of their time there; the ones that aren't are publishing screenshots.</p>
+          <h3>Trust is a metric you design for</h3>
+          <p>A wrong identification is charming once and fatal twice. We treated accuracy-as-experienced — not accuracy-on-the-eval — as a first-class product metric. That discipline is precisely what most generative features still lack, and why so many get switched off within a year.</p>
+          <p><strong>The uncomfortable summary:</strong> building machine learning before it was fashionable forced product discipline that fashion now lets teams skip. If your AI initiative would not survive being unfashionable, it will not survive being fashionable either.</p>
+          <p>Companion piece: <a href="ai-vocabulary.html">the AI Vocabulary field guide</a> — the terms behind every mistake above.</p>
+        </div>
+      </article>
+
+      <article class="post" id="kanban-board-lying">
+        <span class="post-kicker">Field note · Ways of working</span>
+        <h2>Your kanban board is lying to you. Ours was.</h2>
+        <div class="prose">
+          <p>I once ran a lab of three full-stack teams whose board was, by every visible measure, healthy. Columns flowed. Standups were brisk. WIP limits were respected — on the board. And our delivery was still slower than the board said it had any right to be.</p>
+          <p>The board wasn't measuring the work. It was measuring the <em>tickets</em> — and the gap between those two things is where kanban quietly fails in most organisations that adopt it.</p>
+          <h3>Where the lying happens</h3>
+          <p><strong>Waiting disguised as working.</strong> A ticket sitting in "In progress" while its owner waits on another team's API isn't in progress; it's queued with better PR. We only saw it when we started tagging wait-states explicitly — and discovered the majority of our cycle time was waiting, not working. Flow efficiency, not velocity, became the number we managed.</p>
+          <p><strong>The work that never boards.</strong> Production support, the favour for the sales team, the "quick look" at an incident — none of it on the board, all of it consuming the same people. The board showed capacity that didn't exist. Everything went on the board, however small, or the board was fiction.</p>
+          <p><strong>Columns describing hand-offs, not value.</strong> When your columns are "Dev → Code review → QA → Deploy," you've drawn your org chart, not your customer's journey — and every column boundary is a queue you've institutionalised. We redrew columns around outcomes and watched two hand-off queues simply vanish, because they'd only existed to serve the board's shape.</p>
+          <h3>What actually fixed it</h3>
+          <p>Nothing clever: we measured flow instead of motion, boarded everything, and put the waiting where everyone could see it. Within a quarter the board and reality agreed — and once they agreed, the board finally did its real job, which is not tracking work but <em>starting the right arguments</em>. A board that never embarrasses anyone isn't mature; it's decorative.</p>
+          <p><strong>The test for your own board:</strong> pick any ticket in "In progress" and ask its owner what they did on it yesterday. If the honest answer is "waited," your board is lying too — and now you know where to look.</p>
+          <p>Companion tool: the flow-health checks are joining the <a href="https://github.com/ellefitzanderson/product-leadership-toolkit">Product Leadership Toolkit</a>.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site leafwrap">
+  <img class="leaf-float" src="assets/leaf-simple.png" alt="" style="width:90px; right:6%; top:-16px; transform:rotate(30deg);">
+  <div class="wrap foot-inner">
+    <div class="foot-links">
+      <a href="mailto:elle@andersonco.uk">elle@andersonco.uk</a>
+      <a href="https://www.linkedin.com/in/ellefitzanderson">LinkedIn</a>
+      <a href="https://github.com/ellefitzanderson">GitHub</a>
+    </div>
+    <span class="foot-fine">© 2026 Elle Fitz Anderson · Anderson &amp; Co · United Kingdom · Designed and built by me, with Claude — <a href="https://github.com/ellefitzanderson/ellefitzanderson.github.io">source on GitHub</a></span>
+  </div>
+</footer>
+<!-- INTEGRATION SLOT: paste Cloudflare Web Analytics snippet here -->
+<!-- INTEGRATION SLOT: paste Tawk.to chat snippet here -->
+</body>
+</html>

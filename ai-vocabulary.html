@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Vocabulary Every Product Leader Needs — Anderson &amp; Co</title>
+<meta name="description" content="A field guide to AI terminology for product and transformation leaders — organised by where you'll actually meet each term, not the alphabet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16242C;
+    --ink-soft:#4A5A61;
+    --paper:#F1EEE6;
+    --paper-raised:#FBFAF6;
+    --line:#DAD3C3;
+    --brass:#A6763C;
+    --brass-text:#7A5323;
+    --brass-tint:rgba(166,118,60,0.13);
+    --teal:#3B6B63;
+    --teal-text:#2C4F49;
+    --teal-tint:rgba(59,107,99,0.12);
+    --rust:#9C4A3C;
+    --rust-text:#7A3A2F;
+    --rust-tint:rgba(156,74,60,0.12);
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono:'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+    --maxw:820px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--teal-text);}
+  a:hover{color:var(--brass-text);}
+
+  :focus-visible{
+    outline:2px solid var(--brass);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:72px 24px 40px;
+    background:
+      linear-gradient(180deg, var(--paper) 0%, var(--paper) 100%);
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-watermark{
+    position:absolute;
+    right:-40px;
+    top:10px;
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(90px, 18vw, 220px);
+    color:var(--ink);
+    opacity:0.035;
+    letter-spacing:-2px;
+    white-space:nowrap;
+    pointer-events:none;
+    user-select:none;
+  }
+  .hero-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--brass-text);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px;
+    height:1px;
+    background:var(--brass);
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(34px, 5.4vw, 54px);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    max-width:15ch;
+  }
+  .hero-sub{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:56ch;
+    margin:0 0 26px;
+  }
+  .hero-byline{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 14px;
+    margin-bottom:36px;
+  }
+  .hero-byline b{color:var(--ink); font-weight:500;}
+
+  /* Index ruler — signature element: one tick per term, coloured by section,
+     doubles as a jump-to-term index */
+  .ruler-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .ruler{
+    display:flex;
+    gap:3px;
+    margin-bottom:14px;
+  }
+  .tick{
+    flex:1 1 0;
+    height:22px;
+    border:none;
+    border-radius:1px;
+    cursor:pointer;
+    background:var(--line);
+    opacity:0.55;
+    transition:opacity .15s ease, transform .15s ease;
+    padding:0;
+  }
+  .tick:hover, .tick:focus-visible{opacity:1; transform:scaleY(1.15);}
+  .tick.cat-foundations{background:var(--ink-soft);}
+  .tick.cat-building{background:var(--teal);}
+  .tick.cat-breaking{background:var(--rust);}
+  .tick.cat-proving{background:var(--brass);}
+  .tick.cat-board{background:var(--ink);}
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .legend i{width:9px; height:9px; border-radius:1px; display:inline-block;}
+  .legend .cat-foundations{background:var(--ink-soft);}
+  .legend .cat-building{background:var(--teal);}
+  .legend .cat-breaking{background:var(--rust);}
+  .legend .cat-proving{background:var(--brass);}
+  .legend .cat-board{background:var(--ink);}
+
+  /* ---------- HOW TO USE ---------- */
+  .howto{
+    max-width:var(--maxw);
+    margin:36px auto 0;
+    padding:0 24px;
+  }
+  .howto-box{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-left:3px solid var(--ink);
+    padding:20px 24px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .howto-box strong{color:var(--ink); font-weight:600;}
+
+  /* ---------- CONTROLS ---------- */
+  .controls{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(241,238,230,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    margin-top:40px;
+  }
+  .controls-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:14px 24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+  }
+  .search-wrap{
+    position:relative;
+    flex:1 1 220px;
+  }
+  .search-wrap svg{
+    position:absolute;
+    left:11px;
+    top:50%;
+    transform:translateY(-50%);
+    opacity:0.5;
+  }
+  #search{
+    width:100%;
+    font-family:var(--sans);
+    font-size:14px;
+    padding:9px 12px 9px 34px;
+    border:1px solid var(--line);
+    border-radius:5px;
+    background:var(--paper-raised);
+    color:var(--ink);
+  }
+  #search::placeholder{color:var(--ink-soft); opacity:0.7;}
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .chip{
+    font-family:var(--mono);
+    font-size:12px;
+    padding:7px 12px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    background:var(--paper-raised);
+    color:var(--ink-soft);
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .chip:hover{border-color:var(--brass);}
+  .chip.active{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:var(--paper);
+  }
+  .count{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    width:100%;
+    padding-top:2px;
+  }
+
+  /* ---------- MAIN ---------- */
+  main{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:8px 24px 40px;
+  }
+  .section{
+    margin-top:52px;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:6px;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:10px;
+  }
+  .section-index{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--brass-text);
+  }
+  .section-title{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:24px;
+    margin:0;
+  }
+  .section-tagline{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    font-style:italic;
+    margin:8px 0 22px;
+  }
+
+  /* ---------- CARDS ---------- */
+  .card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:6px;
+    margin-bottom:12px;
+    opacity:0;
+    transform:translateY(10px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .card.in-view{opacity:1; transform:translateY(0);}
+  .card.hidden{display:none;}
+
+  .card-head{
+    width:100%;
+    display:grid;
+    grid-template-columns:56px 1fr auto 20px;
+    align-items:center;
+    gap:14px;
+    padding:16px 18px;
+    background:none;
+    border:none;
+    text-align:left;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+  }
+  .card-num{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+  .card-term{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:19px;
+    display:block;
+  }
+  .card-aliases{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:2px;
+    display:block;
+  }
+  .card-tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    border-radius:20px;
+    white-space:nowrap;
+    height:fit-content;
+  }
+  .tag-teal{background:var(--teal-tint); color:var(--teal-text); border:1px solid rgba(59,107,99,0.35);}
+  .tag-brass{background:var(--brass-tint); color:var(--brass-text); border:1px solid rgba(166,118,60,0.4);}
+  .tag-rust{background:var(--rust-tint); color:var(--rust-text); border:1px solid rgba(156,74,60,0.4);}
+
+  .card-chevron{
+    font-family:var(--mono);
+    font-size:16px;
+    color:var(--ink-soft);
+    transition:transform .3s ease;
+  }
+  .card-head[aria-expanded="true"] .card-chevron{transform:rotate(45deg);}
+
+  .card-hook{
+    margin:0;
+    padding:0 18px 16px 88px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+
+  .card-detail{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .35s ease;
+  }
+  .card-detail.expanded{grid-template-rows:1fr;}
+  .card-detail > div{
+    overflow:hidden;
+    min-height:0;
+  }
+  .card-detail-inner{
+    padding:0 18px 22px 88px;
+    border-top:1px solid var(--line);
+    padding-top:16px;
+  }
+  .card-def{
+    margin:0 0 14px;
+    font-size:14.5px;
+    color:var(--ink);
+  }
+  .card-analogy{
+    margin:0 0 16px;
+    font-size:14px;
+    color:var(--ink-soft);
+    padding-left:14px;
+    border-left:2px solid var(--line);
+  }
+  .card-analogy .label{
+    display:block;
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:5px;
+  }
+  .card-ask{
+    background:var(--brass-tint);
+    border-left:3px solid var(--brass);
+    padding:12px 16px;
+    border-radius:0 4px 4px 0;
+  }
+  .ask-label{
+    display:block;
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--brass-text);
+    margin-bottom:5px;
+  }
+  .card-ask p{
+    margin:0;
+    font-size:14px;
+    color:var(--ink);
+    font-weight:500;
+  }
+
+  .empty-state{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--ink-soft);
+    font-size:14.5px;
+  }
+  .empty-state button{
+    margin-top:12px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    padding:8px 16px;
+    border:1px solid var(--ink);
+    background:none;
+    color:var(--ink);
+    border-radius:20px;
+    cursor:pointer;
+  }
+  .empty-state button:hover{background:var(--ink); color:var(--paper);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    max-width:var(--maxw);
+    margin:20px auto 0;
+    padding:36px 24px 60px;
+    border-top:1px solid var(--line);
+  }
+  .footer-eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--brass-text);
+    margin-bottom:10px;
+  }
+  footer h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:22px;
+    margin:0 0 14px;
+    max-width:38ch;
+  }
+  .footer-links{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:13px;
+    margin-top:10px;
+  }
+  .footer-links a{text-decoration:none; border-bottom:1px solid var(--line);}
+  .footer-fine{
+    margin-top:30px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:640px){
+    .card-head{grid-template-columns:1fr auto; row-gap:6px;}
+    .card-num{grid-column:1; order:1;}
+    .card-term, .card-aliases{grid-column:1/-1; order:3;}
+    .card-tag{order:2; grid-column:2;}
+    .card-chevron{display:none;}
+    .card-hook, .card-detail-inner{padding-left:18px;}
+    .hero{padding:52px 18px 30px;}
+    .hero-watermark{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-watermark">FIELD GUIDE</div>
+  <div class="hero-inner">
+    <p class="eyebrow">Anderson &amp; Co — Field Notes</p>
+    <h1>The AI Vocabulary Every Product Leader Needs</h1>
+    <p class="hero-sub">Twenty-seven terms, sorted by where you'll actually meet them — in discovery, in delivery, in the risk register, in the room with your board. Not the alphabet.</p>
+    <p class="hero-byline">Compiled by <b>Elle Fitz Anderson</b> · Product &amp; Transformation Leader · 12 min read</p>
+
+    <p class="ruler-label">27 terms, at a glance — click any tick to jump straight there</p>
+    <div class="ruler" id="ruler"></div>
+    <div class="legend">
+      <span><i class="cat-foundations"></i>Foundations</span>
+      <span><i class="cat-building"></i>Building the Product</span>
+      <span><i class="cat-breaking"></i>Where It Breaks</span>
+      <span><i class="cat-proving"></i>Proving It Works</span>
+      <span><i class="cat-board"></i>The Board Conversation</span>
+    </div>
+  </div>
+</header>
+
+<div class="howto">
+  <div class="howto-box">
+    <strong>How to use this page.</strong> Each entry has a plain definition, an analogy that actually holds up, and a question worth asking in your next meeting. Search for a term, filter by category, or just click a card to open it. No maths, no code — just enough to hold your own in the conversation, and know what to push on.
+  </div>
+</div>
+
+<nav class="controls">
+  <div class="controls-inner">
+    <div class="search-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search" placeholder="Search a term — e.g. hallucination, tokens, RAG…" autocomplete="off">
+    </div>
+    <div class="chips" id="chips">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="foundations">Foundations</button>
+      <button class="chip" data-filter="building">Building</button>
+      <button class="chip" data-filter="breaking">Where It Breaks</button>
+      <button class="chip" data-filter="proving">Proving It Works</button>
+      <button class="chip" data-filter="board">The Board</button>
+    </div>
+    <div class="count" id="count">Showing 27 of 27 terms</div>
+  </div>
+</nav>
+
+<main id="main"></main>
+
+<footer>
+  <p class="footer-eyebrow">Get in touch</p>
+  <h2>I work with senior leaders on product capability, digital transformation, and AI-era operating models.</h2>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/ellefitzanderson" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://andersonco.uk" target="_blank" rel="noopener">andersonco.uk</a>
+  </div>
+  <p class="footer-fine">© 2026 Elle Fitz Anderson · Anderson &amp; Co</p>
+</footer>
+
+<script>
+const DATA = [
+  // ---- FOUNDATIONS ----
+  {cat:'foundations', term:'LLM', aliases:'Large Language Model, foundation model, base model', tag:'Foundational', tagClass:'teal',
+   hook:'The engine sitting under every AI feature you will ever ship.',
+   def:`A model trained on vast amounts of text to predict what word comes next — well enough that the output reads like reasoning, writing, and conversation. GPT, Claude and Gemini are all LLMs: different companies, same underlying idea.`,
+   analogy:`Think of the most widely read colleague you've ever worked with — someone who has absorbed an enormous library and can talk fluently about almost anything in it. They've never lived any of it. Everything they know came from text, not experience.`,
+   ask:`Which model is this feature actually running on, and what happens to our product if that vendor changes pricing or availability overnight?`},
+
+  {cat:'foundations', term:'Token', aliases:'token count, context length unit', tag:'Foundational', tagClass:'teal',
+   hook:'The unit you are actually being billed for.',
+   def:`The chunk of text a model reads and writes in — roughly three-quarters of a word. Every prompt sent and every reply received is measured, and billed, in tokens, and every model has a hard ceiling on how many it can handle at once.`,
+   analogy:`If a word processor charged by the character, you'd start writing differently. Tokens quietly shape how much a feature costs to run and how long a conversation can stay coherent before something gets dropped.`,
+   ask:`What does this feature cost per interaction once real usage kicks in — not the demo number, the production one?`},
+
+  {cat:'foundations', term:'Context Window', aliases:'context length, max tokens', tag:'Foundational', tagClass:'teal',
+   hook:'How much the model can hold in mind at once.',
+   def:`The total amount of text — instructions, history, documents — a model can consider in a single exchange. Once that limit is reached, older content has to drop out to make room for new.`,
+   analogy:`Picture a desk, not a filing cabinet. Everything the model is working with has to fit on the desk at once; anything that doesn't fit gets swept onto the floor and forgotten.`,
+   ask:`Does this use case need the model to hold a whole document, or a whole conversation, in mind — and does the model we've picked actually do that?`},
+
+  {cat:'foundations', term:'Prompt / Prompt Engineering', aliases:'prompting, instructions', tag:'Core Skill', tagClass:'brass',
+   hook:'The brief that shapes everything downstream.',
+   def:`A prompt is the instruction sent to the model; prompt engineering is writing that instruction so the output is reliable, on-brand, and correctly scoped. Small wording changes can move quality more than a model upgrade does.`,
+   analogy:`The same brief handed to two different agencies produces two different campaigns. A vague brief gets vague work back, no matter how good the agency is — prompting works the same way.`,
+   ask:`Who owns this prompt, and where is it version-controlled, so we know exactly what changed when quality shifts?`},
+
+  {cat:'foundations', term:'Inference', aliases:'prediction, serving', tag:'Foundational', tagClass:'teal',
+   hook:'The moment the model actually does the work.',
+   def:`Training is when a model learns; inference is every single time it's then put to use — answering, drafting, recommending. Training happens rarely and expensively; inference happens constantly, and cost scales directly with usage.`,
+   analogy:`Training is years of medical school. Inference is every consultation afterwards — the learning happened once, but the diagnosis is worked out fresh, every single time someone walks in.`,
+   ask:`As adoption grows, is our inference cost growing in a straight line, or have we found ways to cache, batch, or route to cheaper models?`},
+
+  // ---- BUILDING THE PRODUCT ----
+  {cat:'building', term:'RAG', aliases:'Retrieval-Augmented Generation, grounded generation', tag:'Must Know', tagClass:'brass',
+   hook:'Making the model check its sources before it speaks.',
+   def:`Instead of answering purely from what it learned in training, the model first retrieves relevant material from a knowledge base you control, then writes its answer grounded in what it found. Standard way to give AI access to information that's current, proprietary, or simply true.`,
+   analogy:`The difference between an analyst who answers from memory and one who pulls the actual file before briefing you. Same question, very different confidence in the answer.`,
+   ask:`When this feature gets something wrong, can we trace it back to a specific source document — or is it answering from thin air?`},
+
+  {cat:'building', term:'Fine-Tuning', aliases:'model fine-tuning, task-specific training', tag:'Strategic Decision', tagClass:'brass',
+   hook:'Retraining the model itself, not just briefing it.',
+   def:`Taking a general-purpose model and continuing its training on your own labelled data, so behaviour is baked into the model rather than supplied at the moment of asking. Slower and costlier than prompting, and needs real data volume — but can produce something genuinely specialised.`,
+   analogy:`RAG hands someone a manual to consult on the job. Fine-tuning sends them on secondment for six months, until the way they actually think has changed.`,
+   ask:`Have we exhausted what a well-written prompt and good retrieval can do, before committing budget to fine-tuning?`},
+
+  {cat:'building', term:'System Prompt', aliases:'system message, standing instructions', tag:'Core Concept', tagClass:'teal',
+   hook:'The job description the AI never shows the customer.',
+   def:`Standing instructions loaded before every conversation, defining the model's role, tone and boundaries — what it will and won't do, how it should sound, what it should escalate. Users never see it, but it shapes every single reply.`,
+   analogy:`It's the induction and house rules a new starter reads before their first shift — invisible to the customer, but the reason every interaction feels consistent.`,
+   ask:`Who signs off changes to the system prompt, and is that treated with the same rigour as a change to the product spec?`},
+
+  {cat:'building', term:'AI Agent', aliases:'agentic AI, autonomous agent', tag:'Emerging', tagClass:'teal',
+   hook:'AI that acts, not just answers.',
+   def:`A system that plans and executes a sequence of steps toward a goal, rather than replying once and stopping. Agents can call tools, check their own work, and make decisions along the way — a single instruction can trigger a whole chain of actions with no human in between.`,
+   analogy:`The gap between asking a colleague one question and handing them a brief: draft, check pricing, chase a signature, log it. One is a lookup. The other is delegation.`,
+   ask:`At which point in this workflow does the agent stop and ask permission, and what happens if it fails halfway through?`},
+
+  {cat:'building', term:'Multimodal AI', aliases:'vision-language models, audio-language models', tag:'Strategy', tagClass:'teal',
+   hook:'AI that reads, sees, and hears.',
+   def:`A model that works across more than one type of input — text alongside images, audio or video — rather than text alone. It can read a scanned invoice, describe a photo, or work from a voice note, in the same conversation.`,
+   analogy:`Earlier AI assistants were pen pals — text in, text out. Multimodal models are closer to a colleague sitting next to you, glancing at what's actually on your screen.`,
+   ask:`Would this feature genuinely improve if it could see what the customer sees — or are we adding modality because it's available, not because it's needed?`},
+
+  {cat:'building', term:'MCP', aliases:'Model Context Protocol, tool protocol', tag:'Emerging', tagClass:'teal',
+   hook:'One standard plug, instead of a custom cable for every tool.',
+   def:`An open standard that lets an AI model connect to external tools and data sources through a common interface, rather than needing a bespoke integration built for each one. A model that supports MCP can, in principle, plug into any compatible tool without new integration work.`,
+   analogy:`Before universal chargers, every device needed its own cable. MCP is the equivalent for AI integrations — one connector standard, many devices.`,
+   ask:`Which of our existing systems already have an MCP-compatible connector, and how much integration work does that actually save us?`},
+
+  {cat:'building', term:'Embeddings', aliases:'vector representations, semantic vectors', tag:'Core Concept', tagClass:'teal',
+   hook:'Turning meaning into something a computer can compare.',
+   def:`A way of converting text, images or audio into a list of numbers positioned so that similar meanings sit close together. It's what lets a system find content that matches the meaning of a query, not just its exact words.`,
+   analogy:`Imagine every customer review you've ever read, plotted on a map by theme, so every "delivery was late" complaint clusters together regardless of how each customer phrased it. Embeddings build that map automatically.`,
+   ask:`When a customer searches and gets nothing back, is that a real content gap — or is our embedding model simply missing the connection?`},
+
+  {cat:'building', term:'Vector Database', aliases:'vector store, embedding store', tag:'Core Concept', tagClass:'teal',
+   hook:'The storage layer that makes semantic search possible.',
+   def:`A database built to store and search embeddings by similarity, rather than exact match. It's the infrastructure that sits underneath most RAG systems, letting an AI feature retrieve the most relevant content instead of the most literally matching content.`,
+   analogy:`A normal database is a filing cabinet — you need the exact label to find the folder. A vector database is closer to a colleague who's read everything and points you to what's actually relevant, even when you didn't use quite the right words.`,
+   ask:`What happens to search quality as our content library grows tenfold — have we tested that, or just launched it?`},
+
+  // ---- WHERE IT BREAKS ----
+  {cat:'breaking', term:'Hallucination', aliases:'confabulation, model error', tag:'Watch Out', tagClass:'rust',
+   hook:'When the model is confidently, fluently wrong.',
+   def:`A response that sounds authoritative but is factually incorrect — an invented statistic, a citation that doesn't exist, a fact stated with total confidence and no basis. It happens because the model is optimised to produce plausible text, not verified text.`,
+   analogy:`A sharp colleague who'd rather improvise a convincing answer than admit they don't know — and delivers the improvisation with exactly the same confidence as the truth.`,
+   ask:`If this feature hallucinates in front of a customer tomorrow, what's the actual damage — inconvenience, or something we'd have to disclose?`},
+
+  {cat:'breaking', term:'Hallucination Rate', aliases:'factual error rate, grounding score', tag:'Key Metric', tagClass:'rust',
+   hook:'The number that tells you how often "confident" means "wrong."',
+   def:`The proportion of a model's outputs that contain fabricated or incorrect content, typically measured by human review or by using a second model to check the first against a known answer. What counts as acceptable depends entirely on the stakes.`,
+   analogy:`A colleague who's right 98% of the time sounds excellent — until you realise the 2% is indistinguishable from the 98%, and it's reaching customers unfiltered.`,
+   ask:`What's our acceptable error rate for this specific feature — did we set that number before launch, or are we discovering it after?`},
+
+  {cat:'breaking', term:'Bias', aliases:'algorithmic bias, model bias, training bias', tag:'Watch Out', tagClass:'rust',
+   hook:'The model inherited the data\'s blind spots — and yours.',
+   def:`Systematic skew in a model's outputs, caused by patterns in the data it learned from. Because that data is human-generated, it carries human biases in, and the model can reproduce or amplify them at scale — in personas, in recommendations, in who a hiring tool quietly favours.`,
+   analogy:`If every customer interview your team ever ran happened at one flagship store, your "customer insight" would carry that store's biases without anyone noticing. A model trained on skewed data has the same blind spot, just harder to see.`,
+   ask:`Have we tested this feature across the demographics and use cases that aren't in the room when we decide it's ready?`},
+
+  {cat:'breaking', term:'Model Drift', aliases:'data drift, distribution shift, concept drift', tag:'Nuanced', tagClass:'rust',
+   hook:'Why "it worked at launch" isn\'t good enough.',
+   def:`The gradual fall in a model's accuracy as the real world moves away from the data it was trained or tuned on. Invisible unless someone is actively watching output quality over time — a model doesn't announce that it's gone stale.`,
+   analogy:`A pricing model built on last year's market doesn't stop giving confident answers when the market shifts. It just keeps confidently giving the wrong ones.`,
+   ask:`Who is watching this feature's quality six months after launch, not just in the week we shipped it?`},
+
+  {cat:'breaking', term:'Prompt Injection', aliases:'prompt hijacking, adversarial prompting', tag:'Watch Out', tagClass:'rust',
+   hook:'The security risk that lives inside ordinary-looking text.',
+   def:`An attack where input is crafted to override a model's instructions and make it act outside its intended role — often embedded inside content the AI is asked to read, like a document or a webpage, rather than typed directly by the attacker.`,
+   analogy:`It's a social-engineering call to your helpdesk, except the "caller" is a paragraph buried inside a PDF the AI was simply asked to summarise.`,
+   ask:`If this feature reads content we don't control — emails, uploads, the open web — has anyone actually tried to break it?`},
+
+  {cat:'breaking', term:'Guardrails', aliases:'safety filters, content filters, output constraints', tag:'Core Concept', tagClass:'teal',
+   hook:'The lane markings, not the brakes.',
+   def:`Rules and filters placed around a model to constrain what it will produce — keeping it on-topic, blocking unsafe output, enforcing tone and compliance requirements. They don't make a model smarter; they make it safer to put in front of customers.`,
+   analogy:`A cycle lane doesn't make the rider faster or better — it just makes sure everyone on the road knows where they're allowed to be.`,
+   ask:`What actually happens when a guardrail fires — does the customer get a helpful redirect, or a dead end that erodes trust in the whole product?`},
+
+  // ---- PROVING IT WORKS ----
+  {cat:'proving', term:'Evals', aliases:'evaluation framework, LLM evaluation', tag:'Advanced', tagClass:'brass',
+   hook:'QA for judgement, not just for bugs.',
+   def:`A systematic, often automated way of testing whether a model's outputs are accurate, grounded, safe and complete — run every time a prompt changes or a model is upgraded, so quality regressions get caught before customers do.`,
+   analogy:`Ordinary QA checks whether the button works. Evals check whether what the AI said was actually true, sensible and safe — at scale, without a human reading every single output.`,
+   ask:`If we swapped the underlying model tomorrow, would we know within an hour if quality had dropped — or would we hear it from complaints?`},
+
+  {cat:'proving', term:'Precision & Recall', aliases:'positive predictive value, sensitivity', tag:'Strategy', tagClass:'brass',
+   hook:'You cannot maximise both — so which matters here?',
+   def:`Precision asks: when the model flags something, how often is it right? Recall asks: of everything that should have been flagged, how much did it actually catch? Pushing one up typically pulls the other down, and the right balance depends on what's at stake.`,
+   analogy:`A smoke alarm tuned to catch every fire will also go off every time you make toast. Tune it to ignore the toast, and it might miss a genuine but small fire. No setting is right for every kitchen.`,
+   ask:`For this feature, is a missed case or a false alarm the more expensive mistake — and have we actually tuned for that?`},
+
+  {cat:'proving', term:'Chain-of-Thought', aliases:'CoT, step-by-step reasoning', tag:'Nuanced', tagClass:'teal',
+   hook:'Asking the model to show its working.',
+   def:`A prompting technique that instructs the model to reason through a problem in steps before giving a final answer, rather than jumping straight to a conclusion. Measurably improves accuracy on harder tasks, at the cost of extra time and tokens.`,
+   analogy:`The teacher who insisted you show your working wasn't just making marking easier — writing the steps out catches your own mistakes before you hand the answer in.`,
+   ask:`Is the extra latency and cost of stepwise reasoning earning its keep here, or is this a task simple enough not to need it?`},
+
+  {cat:'proving', term:'Temperature', aliases:'randomness, creativity setting', tag:'Nuanced', tagClass:'teal',
+   hook:'The dial between "reliable" and "inventive."',
+   def:`A setting that controls how predictable or varied a model's output is. Low temperature makes it consistently pick the most likely next word — safe, repeatable, a little flat. High temperature lets it wander further from the obvious choice — more original, more likely to go off the rails.`,
+   analogy:`It's the difference between briefing someone to "stick to the script" versus "have some fun with it." Both are valid instructions — just for very different jobs.`,
+   ask:`Does this feature need to be identical every time, or is some variation actually part of what we're offering?`},
+
+  {cat:'proving', term:'Zero-shot & Few-shot Prompting', aliases:'zero-shot inference, in-context learning', tag:'Core Skill', tagClass:'brass',
+   hook:'Show, don\'t just tell — usually cheaper than more engineering.',
+   def:`Zero-shot gives the model an instruction with no examples attached. Few-shot gives it a small number of worked examples first, showing the exact pattern wanted. Adding two or three good examples is often the fastest way to fix a format or tone problem.`,
+   analogy:`Zero-shot is asking someone to write a client email with no reference. Few-shot is showing them three you've actually sent and saying "that voice, please" — the examples do most of the teaching.`,
+   ask:`Before we escalate this to an engineering fix, has anyone simply tried adding two or three good examples to the prompt?`},
+
+  // ---- THE BOARD CONVERSATION ----
+  {cat:'board', term:'Human-in-the-Loop', aliases:'HITL, human review, human oversight', tag:'Must Know', tagClass:'brass',
+   hook:'Where the AI drafts and a person decides.',
+   def:`A design pattern in which a person reviews, edits or approves an AI's output before it has any real-world effect. Sits on a spectrum — from every output reviewed, to only the flagged ones — and the right setting depends entirely on what's at stake if the AI gets it wrong.`,
+   analogy:`It's tracked changes on a document the AI drafted: the model does the first pass, a person decides what actually goes out. Speed from the machine, judgement from the human.`,
+   ask:`What's the cost of a wrong AI output reaching a customer unreviewed — and does that justify the review step we've built, or skipped?`},
+
+  {cat:'board', term:'Deterministic vs Probabilistic', aliases:'rule-based vs statistical', tag:'Core Concept', tagClass:'teal',
+   hook:'The one distinction that explains almost everything else here.',
+   def:`Traditional software is deterministic — the same input always produces the same output. AI is probabilistic — it predicts the most likely useful output, and that output can vary between runs, or be confidently wrong with no obvious warning sign.`,
+   analogy:`A calculator is deterministic: two plus two is always four. A forecaster is probabilistic: tomorrow's prediction is the best guess based on the pattern, and tomorrow is still allowed to surprise you.`,
+   ask:`Are we still testing this feature with a pass/fail mindset built for deterministic software — or have we actually adapted QA for something that behaves like a forecast?`},
+
+  {cat:'board', term:'LLMOps', aliases:'AI observability, ML operations for LLMs', tag:'Infrastructure', tagClass:'teal',
+   hook:'DevOps, but for judgement instead of uptime.',
+   def:`The practice of deploying, monitoring and improving AI features once they're live — tracking every request and response, watching cost and latency, running evals continuously, catching quality degradation before customers report it.`,
+   analogy:`Standard operations tools tell you if the server's down. LLMOps tells you if the AI has quietly started giving worse answers, costing more than expected, or failing in ways nobody's flagged yet.`,
+   ask:`If quality on this feature degraded 15% over the next month, would we see it on a dashboard, or find out from a support queue?`},
+];
+
+const CATEGORIES = [
+  {key:'foundations', num:'01', label:'Foundations', tagline:'Before the meeting starts'},
+  {key:'building',    num:'02', label:'Building the Product', tagline:'Where the product decisions actually live'},
+  {key:'breaking',    num:'03', label:'Where It Breaks', tagline:'The risk register'},
+  {key:'proving',     num:'04', label:'Proving It Works', tagline:'The evidence base'},
+  {key:'board',       num:'05', label:'The Board Conversation', tagline:'Framing it for governance'},
+];
+
+function slugify(s){
+  return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+
+// Assign global numbers 001..027 in data order
+DATA.forEach((d,i)=>{ d.num = String(i+1).padStart(3,'0'); d.id = slugify(d.term); });
+
+// ---- Build ruler ----
+const ruler = document.getElementById('ruler');
+DATA.forEach(d=>{
+  const b = document.createElement('button');
+  b.className = 'tick cat-'+d.cat;
+  b.title = d.term;
+  b.setAttribute('aria-label', 'Jump to '+d.term);
+  b.addEventListener('click', ()=> jumpTo(d.id));
+  ruler.appendChild(b);
+});
+
+// ---- Build main content ----
+const main = document.getElementById('main');
+
+CATEGORIES.forEach(cat=>{
+  const section = document.createElement('section');
+  section.className = 'section';
+  section.dataset.cat = cat.key;
+
+  const head = document.createElement('div');
+  head.className = 'section-head';
+  head.innerHTML = `<span class="section-index">${cat.num}</span><h2 class="section-title">${cat.label}</h2>`;
+  section.appendChild(head);
+
+  const tagline = document.createElement('p');
+  tagline.className = 'section-tagline';
+  tagline.textContent = cat.tagline;
+  section.appendChild(tagline);
+
+  DATA.filter(d=>d.cat===cat.key).forEach((d, idx)=>{
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.id = d.id;
+    card.dataset.cat = d.cat;
+    card.dataset.search = [d.term, d.aliases, d.hook, d.def, d.analogy, d.ask].join(' ').toLowerCase();
+
+    const isFirstOfSection = idx===0;
+
+    card.innerHTML = `
+      <button class="card-head" aria-expanded="${isFirstOfSection ? 'true':'false'}">
+        <span class="card-num">No. ${d.num}</span>
+        <span class="card-titles">
+          <span class="card-term">${d.term}</span>
+          <span class="card-aliases">Also called: ${d.aliases}</span>
+        </span>
+        <span class="card-tag tag-${d.tagClass}">${d.tag}</span>
+        <span class="card-chevron">+</span>
+      </button>
+      <p class="card-hook">${d.hook}</p>
+      <div class="card-detail ${isFirstOfSection ? 'expanded':''}">
+        <div>
+          <div class="card-detail-inner">
+            <p class="card-def">${d.def}</p>
+            <p class="card-analogy"><span class="label">In practice</span>${d.analogy}</p>
+            <div class="card-ask">
+              <span class="ask-label">→ Ask this next</span>
+              <p>${d.ask}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    section.appendChild(card);
+  });
+
+  main.appendChild(section);
+});
+
+// ---- Card toggle ----
+main.addEventListener('click', e=>{
+  const btn = e.target.closest('.card-head');
+  if(!btn) return;
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+  btn.closest('.card').querySelector('.card-detail').classList.toggle('expanded', !expanded);
+});
+
+function jumpTo(id){
+  const card = document.getElementById(id);
+  if(!card) return;
+  card.classList.remove('hidden');
+  const head = card.querySelector('.card-head');
+  head.setAttribute('aria-expanded','true');
+  card.querySelector('.card-detail').classList.add('expanded');
+  card.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+// ---- Search + filter ----
+const searchInput = document.getElementById('search');
+const chips = document.querySelectorAll('.chip');
+const countEl = document.getElementById('count');
+let activeFilter = 'all';
+
+function applyFilters(){
+  const q = searchInput.value.trim().toLowerCase();
+  let shown = 0;
+
+  CATEGORIES.forEach(cat=>{
+    const section = document.querySelector(`.section[data-cat="${cat.key}"]`);
+    let sectionHasVisible = false;
+
+    section.querySelectorAll('.card').forEach(card=>{
+      const matchesCat = activeFilter==='all' || card.dataset.cat === activeFilter;
+      const matchesSearch = !q || card.dataset.search.includes(q);
+      const visible = matchesCat && matchesSearch;
+      card.classList.toggle('hidden', !visible);
+      if(visible){ shown++; sectionHasVisible = true; }
+    });
+
+    section.style.display = sectionHasVisible ? '' : 'none';
+  });
+
+  countEl.textContent = `Showing ${shown} of ${DATA.length} terms`;
+
+  let empty = document.getElementById('empty-state');
+  if(shown===0){
+    if(!empty){
+      empty = document.createElement('div');
+      empty.id = 'empty-state';
+      empty.className = 'empty-state';
+      empty.innerHTML = `No matches for that search.<br><button id="clear-btn">Clear filters</button>`;
+      main.appendChild(empty);
+      document.getElementById('clear-btn').addEventListener('click', ()=>{
+        searchInput.value = '';
+        setFilter('all');
+      });
+    }
+  } else if(empty){
+    empty.remove();
+  }
+}
+
+function setFilter(key){
+  activeFilter = key;
+  chips.forEach(c=> c.classList.toggle('active', c.dataset.filter===key));
+  applyFilters();
+}
+
+searchInput.addEventListener('input', applyFilters);
+chips.forEach(chip=>{
+  chip.addEventListener('click', ()=> setFilter(chip.dataset.filter));
+});
+
+// ---- Scroll reveal ----
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      io.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.08});
+
+document.querySelectorAll('.card').forEach(c=> io.observe(c));
+
+applyFilters();
+</script>
+</body>
+</html>
