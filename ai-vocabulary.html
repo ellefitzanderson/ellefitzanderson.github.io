@@ -497,6 +497,7 @@
     .hero{padding:52px 18px 30px;}
     .hero-watermark{display:none;}
   }
+.card-gotcha{border-left-color:#C9A227;} .card-gotcha .label{color:#8F6F1B;}
 </style>
 </head>
 <body>
@@ -506,10 +507,10 @@
   <div class="hero-inner">
     <p class="eyebrow">Anderson &amp; Co, Field Notes</p>
     <h1>The AI Vocabulary Every Product Leader Needs</h1>
-    <p class="hero-sub">Twenty-seven terms, sorted by where you'll actually meet them, in discovery, in delivery, in the risk register, in the room with your board. Not the alphabet.</p>
+    <p class="hero-sub">Thirty-one terms, sorted by where you'll actually meet them, in discovery, in delivery, in the risk register, in the room with your board. Not the alphabet.</p>
     <p class="hero-byline">Compiled by <b>Elle Fitz Anderson</b> · Product &amp; Transformation Leader · 12 min read</p>
 
-    <p class="ruler-label">27 terms, at a glance, click any tick to jump straight there</p>
+    <p class="ruler-label">31 terms, at a glance, click any tick to jump straight there</p>
     <div class="ruler" id="ruler"></div>
     <div class="legend">
       <span><i class="cat-foundations"></i>Foundations</span>
@@ -541,7 +542,7 @@
       <button class="chip" data-filter="proving">Proving It Works</button>
       <button class="chip" data-filter="board">The Board</button>
     </div>
-    <div class="count" id="count">Showing 27 of 27 terms</div>
+    <div class="count" id="count">Showing 27 of 31 terms</div>
   </div>
 </nav>
 
@@ -564,168 +565,194 @@ const DATA = [
   {cat:'foundations', term:'LLM', aliases:'Large Language Model, foundation model, base model', tag:'Foundational', tagClass:'teal',
    hook:'The engine sitting under every AI feature you will ever ship.',
    def:`A model trained on vast amounts of text to predict what word comes next, well enough that the output reads like reasoning, writing, and conversation. GPT, Claude and Gemini are all LLMs: different companies, same underlying idea.`,
-   analogy:`Think of the most widely read colleague you've ever worked with, someone who has absorbed an enormous library and can talk fluently about almost anything in it. They've never lived any of it. Everything they know came from text, not experience.`,
+   analogy:`Think of the most widely read colleague you've ever worked with, someone who has absorbed an enormous library and can talk fluently about almost anything in it. They've never lived any of it. Everything they know came from text, not experience.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Vendor concentration is a board risk before it is a technical one. The moment your roadmap assumes one provider's model, pricing power sits on their side of the table, so demand a switching test in the architecture from day one.`,
    ask:`Which model is this feature actually running on, and what happens to our product if that vendor changes pricing or availability overnight?`},
 
   {cat:'foundations', term:'Token', aliases:'token count, context length unit', tag:'Foundational', tagClass:'teal',
    hook:'The unit you are actually being billed for.',
    def:`The chunk of text a model reads and writes in, roughly three-quarters of a word. Every prompt sent and every reply received is measured, and billed, in tokens, and every model has a hard ceiling on how many it can handle at once.`,
-   analogy:`If a word processor charged by the character, you'd start writing differently. Tokens quietly shape how much a feature costs to run and how long a conversation can stay coherent before something gets dropped.`,
+   analogy:`If a word processor charged by the character, you'd start writing differently. Tokens quietly shape how much a feature costs to run and how long a conversation can stay coherent before something gets dropped.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Finance discovers tokens about three months after launch. Long system prompts and chat history mean you pay for the same words thousands of times a day, so the flabbiest prompt in the building quietly becomes a line item.`,
    ask:`What does this feature cost per interaction once real usage kicks in, not the demo number, the production one?`},
 
   {cat:'foundations', term:'Context Window', aliases:'context length, max tokens', tag:'Foundational', tagClass:'teal',
    hook:'How much the model can hold in mind at once.',
    def:`The total amount of text, instructions, history, documents, a model can consider in a single exchange. Once that limit is reached, older content has to drop out to make room for new.`,
-   analogy:`Picture a desk, not a filing cabinet. Everything the model is working with has to fit on the desk at once; anything that doesn't fit gets swept onto the floor and forgotten.`,
+   analogy:`Picture a desk, not a filing cabinet. Everything the model is working with has to fit on the desk at once; anything that doesn't fit gets swept onto the floor and forgotten.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Bigger windows licence lazy product design. Teams stuff everything in because they can, quality sags in the middle of the pile and cost doubles, when curation would have beaten capacity.`,
    ask:`Does this use case need the model to hold a whole document, or a whole conversation, in mind, and does the model we've picked actually do that?`},
 
   {cat:'foundations', term:'Prompt / Prompt Engineering', aliases:'prompting, instructions', tag:'Core Skill', tagClass:'brass',
    hook:'The brief that shapes everything downstream.',
    def:`A prompt is the instruction sent to the model; prompt engineering is writing that instruction so the output is reliable, on-brand, and correctly scoped. Small wording changes can move quality more than a model upgrade does.`,
-   analogy:`The same brief handed to two different agencies produces two different campaigns. A vague brief gets vague work back, no matter how good the agency is, prompting works the same way.`,
+   analogy:`The same brief handed to two different agencies produces two different campaigns. A vague brief gets vague work back, no matter how good the agency is, prompting works the same way.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Prompts are product decisions dressed as text files. An unversioned prompt tweak changes behaviour for every customer overnight, which means you shipped a release with no release process.`,
    ask:`Who owns this prompt, and where is it version-controlled, so we know exactly what changed when quality shifts?`},
 
   {cat:'foundations', term:'Inference', aliases:'prediction, serving', tag:'Foundational', tagClass:'teal',
    hook:'The moment the model actually does the work.',
    def:`Training is when a model learns; inference is every single time it's then put to use, answering, drafting, recommending. Training happens rarely and expensively; inference happens constantly, and cost scales directly with usage.`,
-   analogy:`Training is years of medical school. Inference is every consultation afterwards, the learning happened once, but the diagnosis is worked out fresh, every single time someone walks in.`,
+   analogy:`Training is years of medical school. Inference is every consultation afterwards, the learning happened once, but the diagnosis is worked out fresh, every single time someone walks in.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>The demo is the cheapest this feature will ever be. Growth multiplies inference cost in a straight line unless someone owns caching, batching and routing, and that someone defaults to no one.`,
    ask:`As adoption grows, is our inference cost growing in a straight line, or have we found ways to cache, batch, or route to cheaper models?`},
 
   // ---- BUILDING THE PRODUCT ----
   {cat:'building', term:'RAG', aliases:'Retrieval-Augmented Generation, grounded generation', tag:'Must Know', tagClass:'brass',
    hook:'Making the model check its sources before it speaks.',
    def:`Instead of answering purely from what it learned in training, the model first retrieves relevant material from a knowledge base you control, then writes its answer grounded in what it found. Standard way to give AI access to information that's current, proprietary, or simply true.`,
-   analogy:`The difference between an analyst who answers from memory and one who pulls the actual file before briefing you. Same question, very different confidence in the answer.`,
+   analogy:`The difference between an analyst who answers from memory and one who pulls the actual file before briefing you. Same question, very different confidence in the answer.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>RAG quality is content operations wearing a technical costume. The model takes the blame while stale, duplicated and contradictory documents are the actual defect, so fund the librarians before the tuning.`,
    ask:`When this feature gets something wrong, can we trace it back to a specific source document, or is it answering from thin air?`},
 
   {cat:'building', term:'Fine-Tuning', aliases:'model fine-tuning, task-specific training', tag:'Strategic Decision', tagClass:'brass',
    hook:'Retraining the model itself, not just briefing it.',
    def:`Taking a general-purpose model and continuing its training on your own labelled data, so behaviour is baked into the model rather than supplied at the moment of asking. Slower and costlier than prompting, and needs real data volume, but can produce something genuinely specialised.`,
-   analogy:`RAG hands someone a manual to consult on the job. Fine-tuning sends them on secondment for six months, until the way they actually think has changed.`,
+   analogy:`RAG hands someone a manual to consult on the job. Fine-tuning sends them on secondment for six months, until the way they actually think has changed.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Fine-tuning is a puppy, not a project: it arrives with retraining, eval refreshes and hosting bills forever. Teams keep buying it for problems that three good examples in the prompt would have solved.`,
    ask:`Have we exhausted what a well-written prompt and good retrieval can do, before committing budget to fine-tuning?`},
 
   {cat:'building', term:'System Prompt', aliases:'system message, standing instructions', tag:'Core Concept', tagClass:'teal',
    hook:'The job description the AI never shows the customer.',
    def:`Standing instructions loaded before every conversation, defining the model's role, tone and boundaries, what it will and won't do, how it should sound, what it should escalate. Users never see it, but it shapes every single reply.`,
-   analogy:`It's the induction and house rules a new starter reads before their first shift, invisible to the customer, but the reason every interaction feels consistent.`,
+   analogy:`It's the induction and house rules a new starter reads before their first shift, invisible to the customer, but the reason every interaction feels consistent.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Your system prompt is the model's employment contract with your brand. If legal and brand have never read it, your company's voice is being set by whoever edited it last.`,
    ask:`Who signs off changes to the system prompt, and is that treated with the same rigour as a change to the product spec?`},
 
   {cat:'building', term:'AI Agent', aliases:'agentic AI, autonomous agent', tag:'Emerging', tagClass:'teal',
    hook:'AI that acts, not just answers.',
    def:`A system that plans and executes a sequence of steps toward a goal, rather than replying once and stopping. Agents can call tools, check their own work, and make decisions along the way, a single instruction can trigger a whole chain of actions with no human in between.`,
-   analogy:`The gap between asking a colleague one question and handing them a brief: draft, check pricing, chase a signature, log it. One is a lookup. The other is delegation.`,
+   analogy:`The gap between asking a colleague one question and handing them a brief: draft, check pricing, chase a signature, log it. One is a lookup. The other is delegation.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Autonomy is a dial, not a feature. Every step the agent takes without asking is a step you will answer for in an incident review, so set the permission points before the demo wows the exec.`,
    ask:`At which point in this workflow does the agent stop and ask permission, and what happens if it fails halfway through?`},
 
   {cat:'building', term:'Multimodal AI', aliases:'vision-language models, audio-language models', tag:'Strategy', tagClass:'teal',
    hook:'AI that reads, sees, and hears.',
    def:`A model that works across more than one type of input, text alongside images, audio or video, rather than text alone. It can read a scanned invoice, describe a photo, or work from a voice note, in the same conversation.`,
-   analogy:`Earlier AI assistants were pen pals, text in, text out. Multimodal models are closer to a colleague sitting next to you, glancing at what's actually on your screen.`,
+   analogy:`Earlier AI assistants were pen pals, text in, text out. Multimodal models are closer to a colleague sitting next to you, glancing at what's actually on your screen.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Every new modality multiplies your failure surface and your eval bill. Images and audio bring privacy, accessibility and moderation duties that text never had, and they are rarely priced into the business case.`,
    ask:`Would this feature genuinely improve if it could see what the customer sees, or are we adding modality because it's available, not because it's needed?`},
 
   {cat:'building', term:'MCP', aliases:'Model Context Protocol, tool protocol', tag:'Emerging', tagClass:'teal',
    hook:'One standard plug, instead of a custom cable for every tool.',
    def:`An open standard that lets an AI model connect to external tools and data sources through a common interface, rather than needing a bespoke integration built for each one. A model that supports MCP can, in principle, plug into any compatible tool without new integration work.`,
-   analogy:`Before universal chargers, every device needed its own cable. MCP is the equivalent for AI integrations, one connector standard, many devices.`,
+   analogy:`Before universal chargers, every device needed its own cable. MCP is the equivalent for AI integrations, one connector standard, many devices.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Connectors are quiet security decisions. Each one extends what the model can read and do, so review the connector list like production access, not like a plugin store.`,
    ask:`Which of our existing systems already have an MCP-compatible connector, and how much integration work does that actually save us?`},
 
   {cat:'building', term:'Embeddings', aliases:'vector representations, semantic vectors', tag:'Core Concept', tagClass:'teal',
    hook:'Turning meaning into something a computer can compare.',
    def:`A way of converting text, images or audio into a list of numbers positioned so that similar meanings sit close together. It's what lets a system find content that matches the meaning of a query, not just its exact words.`,
-   analogy:`Imagine every customer review you've ever read, plotted on a map by theme, so every "delivery was late" complaint clusters together regardless of how each customer phrased it. Embeddings build that map automatically.`,
+   analogy:`Imagine every customer review you've ever read, plotted on a map by theme, so every "delivery was late" complaint clusters together regardless of how each customer phrased it. Embeddings build that map automatically.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Embedding choices fossilise. Switch models later and every stored vector needs regenerating, so the cheap decision made in week one becomes a migration programme in year two.`,
    ask:`When a customer searches and gets nothing back, is that a real content gap, or is our embedding model simply missing the connection?`},
 
   {cat:'building', term:'Vector Database', aliases:'vector store, embedding store', tag:'Core Concept', tagClass:'teal',
    hook:'The storage layer that makes semantic search possible.',
    def:`A database built to store and search embeddings by similarity, rather than exact match. It's the infrastructure that sits underneath most RAG systems, letting an AI feature retrieve the most relevant content instead of the most literally matching content.`,
-   analogy:`A normal database is a filing cabinet, you need the exact label to find the folder. A vector database is closer to a colleague who's read everything and points you to what's actually relevant, even when you didn't use quite the right words.`,
+   analogy:`A normal database is a filing cabinet, you need the exact label to find the folder. A vector database is closer to a colleague who's read everything and points you to what's actually relevant, even when you didn't use quite the right words.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Teams procure vector infrastructure before proving retrieval value. For many products a boring database you already run would have done the job, so demand the evidence before buying the shelving.`,
    ask:`What happens to search quality as our content library grows tenfold, have we tested that, or just launched it?`},
+
+
+  {cat:'building', term:'Structured Outputs & Tool Calling', aliases:'function calling, JSON mode, schemas', tag:'Must Know', tagClass:'brass',
+   hook:'How AI stops chatting about work and starts safely doing some.',
+   def:`Free-form prose is how models talk to people. Structured outputs and tool calling are how they talk to software: replies forced into exact machine-readable shapes, and the ability to invoke defined operations, like create the ticket or fetch the balance, with inputs checked before anything runs.`,
+   analogy:`A brilliant new hire who stops sending you rambling emails and starts filling in the actual form, every field, every time. Same brain, suddenly usable by the rest of the machine.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Demos run on prose; production runs on schemas. Until outputs are validated against a contract, every downstream system is parsing vibes, and the first wrong-shaped reply finds your billing pipeline.`,
+   ask:`Which of our AI features still pass free text between systems, and what happens downstream when it arrives wrong-shaped?`},
+
+  {cat:'building', term:'Latency', aliases:'response time, time to first token, streaming', tag:'Core Concept', tagClass:'teal',
+   hook:'How long the customer waits, and what that wait costs you.',
+   def:`How long the customer waits for the answer. With AI features, speed, quality and cost pull against each other: bigger models and longer reasoning give better answers, slower and dearer. Streaming, which shows words as they generate, buys perceived speed without buying actual speed.`,
+   analogy:`The espresso bar versus the pour-over counter. Both make coffee; only one suits the morning rush. Choosing the brew method to match the queue is the job.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Latency is a pricing decision in disguise. Teams pick the model that shone in the demo, then meet the late-afternoon traffic, and the fix, a smaller model or a shorter chain, was available all along.`,
+   ask:`What response time does this moment in the journey actually need, and what is the cheapest model tier that meets it?`},
 
   // ---- WHERE IT BREAKS ----
   {cat:'breaking', term:'Hallucination', aliases:'confabulation, model error', tag:'Watch Out', tagClass:'rust',
    hook:'When the model is confidently, fluently wrong.',
    def:`A response that sounds authoritative but is factually incorrect, an invented statistic, a citation that doesn't exist, a fact stated with total confidence and no basis. It happens because the model is optimised to produce plausible text, not verified text.`,
-   analogy:`A sharp colleague who'd rather improvise a convincing answer than admit they don't know, and delivers the improvisation with exactly the same confidence as the truth.`,
+   analogy:`A sharp colleague who'd rather improvise a convincing answer than admit they don't know, and delivers the improvisation with exactly the same confidence as the truth.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>The costly hallucinations are the plausible ones. Nobody acts on the absurd errors; they act on the believable ones, so design your review for plausibility, not absurdity.`,
    ask:`If this feature hallucinates in front of a customer tomorrow, what's the actual damage, inconvenience, or something we'd have to disclose?`},
 
   {cat:'breaking', term:'Hallucination Rate', aliases:'factual error rate, grounding score', tag:'Key Metric', tagClass:'rust',
    hook:'The number that tells you how often "confident" means "wrong."',
    def:`The proportion of a model's outputs that contain fabricated or incorrect content, typically measured by human review or by using a second model to check the first against a known answer. What counts as acceptable depends entirely on the stakes.`,
-   analogy:`A colleague who's right 98% of the time sounds excellent, until you realise the 2% is indistinguishable from the 98%, and it's reaching customers unfiltered.`,
+   analogy:`A colleague who's right 98% of the time sounds excellent, until you realise the 2% is indistinguishable from the 98%, and it's reaching customers unfiltered.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>A single accuracy number hides who pays. Two percent wrong spread evenly is one product; two percent concentrated on your highest-value segment is a very different product with the same score.`,
    ask:`What's our acceptable error rate for this specific feature, did we set that number before launch, or are we discovering it after?`},
 
   {cat:'breaking', term:'Bias', aliases:'algorithmic bias, model bias, training bias', tag:'Watch Out', tagClass:'rust',
    hook:'The model inherited the data\'s blind spots, and yours.',
    def:`Systematic skew in a model's outputs, caused by patterns in the data it learned from. Because that data is human-generated, it carries human biases in, and the model can reproduce or amplify them at scale, in personas, in recommendations, in who a hiring tool quietly favours.`,
-   analogy:`If every customer interview your team ever ran happened at one flagship store, your "customer insight" would carry that store's biases without anyone noticing. A model trained on skewed data has the same blind spot, just harder to see.`,
+   analogy:`If every customer interview your team ever ran happened at one flagship store, your "customer insight" would carry that store's biases without anyone noticing. A model trained on skewed data has the same blind spot, just harder to see.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Bias findings arrive as headlines, not as tickets. The eval that would have caught it costs thousands; the headline costs the brand, and regulators read the headlines too.`,
    ask:`Have we tested this feature across the demographics and use cases that aren't in the room when we decide it's ready?`},
 
   {cat:'breaking', term:'Model Drift', aliases:'data drift, distribution shift, concept drift', tag:'Nuanced', tagClass:'rust',
    hook:'Why "it worked at launch" isn\'t good enough.',
    def:`The gradual fall in a model's accuracy as the real world moves away from the data it was trained or tuned on. Invisible unless someone is actively watching output quality over time, a model doesn't announce that it's gone stale.`,
-   analogy:`A pricing model built on last year's market doesn't stop giving confident answers when the market shifts. It just keeps confidently giving the wrong ones.`,
+   analogy:`A pricing model built on last year's market doesn't stop giving confident answers when the market shifts. It just keeps confidently giving the wrong ones.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Drift hides inside healthy dashboards, because usage holds while quality slides. Book the quarterly re-eval into the roadmap now; nobody volunteers for maintenance later.`,
    ask:`Who is watching this feature's quality six months after launch, not just in the week we shipped it?`},
 
   {cat:'breaking', term:'Prompt Injection', aliases:'prompt hijacking, adversarial prompting', tag:'Watch Out', tagClass:'rust',
    hook:'The security risk that lives inside ordinary-looking text.',
    def:`An attack where input is crafted to override a model's instructions and make it act outside its intended role, often embedded inside content the AI is asked to read, like a document or a webpage, rather than typed directly by the attacker.`,
-   analogy:`It's a social-engineering call to your helpdesk, except the "caller" is a paragraph buried inside a PDF the AI was simply asked to summarise.`,
+   analogy:`It's a social-engineering call to your helpdesk, except the "caller" is a paragraph buried inside a PDF the AI was simply asked to summarise.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Any feature that reads untrusted content is taking instructions from strangers. If the AI can both read the outside world and act on your systems, you have built an open window next to the safe.`,
    ask:`If this feature reads content we don't control, emails, uploads, the open web, has anyone actually tried to break it?`},
 
   {cat:'breaking', term:'Guardrails', aliases:'safety filters, content filters, output constraints', tag:'Core Concept', tagClass:'teal',
    hook:'The lane markings, not the brakes.',
    def:`Rules and filters placed around a model to constrain what it will produce, keeping it on-topic, blocking unsafe output, enforcing tone and compliance requirements. They don't make a model smarter; they make it safer to put in front of customers.`,
-   analogy:`A cycle lane doesn't make the rider faster or better, it just makes sure everyone on the road knows where they're allowed to be.`,
+   analogy:`A cycle lane doesn't make the rider faster or better, it just makes sure everyone on the road knows where they're allowed to be.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Your funniest customer stress-tests the guardrails within a week of launch. Overblocking legitimate users does more quiet revenue damage than the rare bad output the rails were bought to stop.`,
    ask:`What actually happens when a guardrail fires, does the customer get a helpful redirect, or a dead end that erodes trust in the whole product?`},
+
+
+  {cat:'breaking', term:'Red-Teaming', aliases:'adversarial testing, jailbreak testing', tag:'Core Concept', tagClass:'teal',
+   hook:'Attacking your own AI before the public does it for free.',
+   def:`Deliberately attacking your own AI feature before launch: paying people to make it leak data, say the unsayable, ignore its instructions, or embarrass the brand. Not a compliance chore; a rehearsal for contact with the public.`,
+   analogy:`Hiring a locksmith to break into your house before you move the valuables in. Far cheaper to learn about the weak window from someone on your own payroll.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Your customers will red-team you for free within days of launch, and they publish their findings on social media. The internal version costs a workshop; the external version costs the brand, and screenshots never expire.`,
+   ask:`Who has seriously tried to break this feature before launch, and what did we change because of what they found?`},
 
   // ---- PROVING IT WORKS ----
   {cat:'proving', term:'Evals', aliases:'evaluation framework, LLM evaluation', tag:'Advanced', tagClass:'brass',
    hook:'QA for judgement, not just for bugs.',
    def:`A systematic, often automated way of testing whether a model's outputs are accurate, grounded, safe and complete, run every time a prompt changes or a model is upgraded, so quality regressions get caught before customers do.`,
-   analogy:`Ordinary QA checks whether the button works. Evals check whether what the AI said was actually true, sensible and safe, at scale, without a human reading every single output.`,
+   analogy:`Ordinary QA checks whether the button works. Evals check whether what the AI said was actually true, sensible and safe, at scale, without a human reading every single output.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>An eval nobody updates is a mirror of last year's product. Feed it real logged failures every month, or you are measuring your ability to pass your own old test.`,
    ask:`If we swapped the underlying model tomorrow, would we know within an hour if quality had dropped, or would we hear it from complaints?`},
 
   {cat:'proving', term:'Precision & Recall', aliases:'positive predictive value, sensitivity', tag:'Strategy', tagClass:'brass',
    hook:'You cannot maximise both, so which matters here?',
    def:`Precision asks: when the model flags something, how often is it right? Recall asks: of everything that should have been flagged, how much did it actually catch? Pushing one up typically pulls the other down, and the right balance depends on what's at stake.`,
-   analogy:`A smoke alarm tuned to catch every fire will also go off every time you make toast. Tune it to ignore the toast, and it might miss a genuine but small fire. No setting is right for every kitchen.`,
+   analogy:`A smoke alarm tuned to catch every fire will also go off every time you make toast. Tune it to ignore the toast, and it might miss a genuine but small fire. No setting is right for every kitchen.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Whoever sets the threshold sets the P&L. This is a commercial trade-off wearing a statistics costume, and it belongs in the product review, not buried in a data science notebook.`,
    ask:`For this feature, is a missed case or a false alarm the more expensive mistake, and have we actually tuned for that?`},
 
   {cat:'proving', term:'Chain-of-Thought', aliases:'CoT, step-by-step reasoning', tag:'Nuanced', tagClass:'teal',
    hook:'Asking the model to show its working.',
    def:`A prompting technique that instructs the model to reason through a problem in steps before giving a final answer, rather than jumping straight to a conclusion. Measurably improves accuracy on harder tasks, at the cost of extra time and tokens.`,
-   analogy:`The teacher who insisted you show your working wasn't just making marking easier, writing the steps out catches your own mistakes before you hand the answer in.`,
+   analogy:`The teacher who insisted you show your working wasn't just making marking easier, writing the steps out catches your own mistakes before you hand the answer in.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Visible reasoning reads as confidence and audits as theatre. The steps shown are not guaranteed to be the real computation, so do not sell explainability to a regulator on the back of it.`,
    ask:`Is the extra latency and cost of stepwise reasoning earning its keep here, or is this a task simple enough not to need it?`},
 
   {cat:'proving', term:'Temperature', aliases:'randomness, creativity setting', tag:'Nuanced', tagClass:'teal',
    hook:'The dial between "reliable" and "inventive."',
    def:`A setting that controls how predictable or varied a model's output is. Low temperature makes it consistently pick the most likely next word, safe, repeatable, a little flat. High temperature lets it wander further from the obvious choice, more original, more likely to go off the rails.`,
-   analogy:`It's the difference between briefing someone to "stick to the script" versus "have some fun with it." Both are valid instructions, just for very different jobs.`,
+   analogy:`It's the difference between briefing someone to "stick to the script" versus "have some fun with it." Both are valid instructions, just for very different jobs.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Teams demo at one temperature and ship at another. Lock the setting per use case and write it down, or support will spend weeks chasing bugs that are just dice rolls.`,
    ask:`Does this feature need to be identical every time, or is some variation actually part of what we're offering?`},
 
   {cat:'proving', term:'Zero-shot & Few-shot Prompting', aliases:'zero-shot inference, in-context learning', tag:'Core Skill', tagClass:'brass',
    hook:'Show, don\'t just tell, usually cheaper than more engineering.',
    def:`Zero-shot gives the model an instruction with no examples attached. Few-shot gives it a small number of worked examples first, showing the exact pattern wanted. Adding two or three good examples is often the fastest way to fix a format or tone problem.`,
-   analogy:`Zero-shot is asking someone to write a client email with no reference. Few-shot is showing them three you've actually sent and saying "that voice, please", the examples do most of the teaching.`,
+   analogy:`Zero-shot is asking someone to write a client email with no reference. Few-shot is showing them three you've actually sent and saying "that voice, please", the examples do most of the teaching.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Your examples are silent policy. The three samples pasted into the prompt define tone and edge cases more than the spec does, and nobody reviews them after week one.`,
    ask:`Before we escalate this to an engineering fix, has anyone simply tried adding two or three good examples to the prompt?`},
 
   // ---- THE BOARD CONVERSATION ----
   {cat:'board', term:'Human-in-the-Loop', aliases:'HITL, human review, human oversight', tag:'Must Know', tagClass:'brass',
    hook:'Where the AI drafts and a person decides.',
    def:`A design pattern in which a person reviews, edits or approves an AI's output before it has any real-world effect. Sits on a spectrum, from every output reviewed, to only the flagged ones, and the right setting depends entirely on what's at stake if the AI gets it wrong.`,
-   analogy:`It's tracked changes on a document the AI drafted: the model does the first pass, a person decides what actually goes out. Speed from the machine, judgement from the human.`,
+   analogy:`It's tracked changes on a document the AI drafted: the model does the first pass, a person decides what actually goes out. Speed from the machine, judgement from the human.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>Review queues rot into rubber stamps. When the human approves 99 percent of outputs, attention dies exactly where the risk lives, so measure reviewer disagreement, not reviewer throughput.`,
    ask:`What's the cost of a wrong AI output reaching a customer unreviewed, and does that justify the review step we've built, or skipped?`},
 
   {cat:'board', term:'Deterministic vs Probabilistic', aliases:'rule-based vs statistical', tag:'Core Concept', tagClass:'teal',
    hook:'The one distinction that explains almost everything else here.',
    def:`Traditional software is deterministic, the same input always produces the same output. AI is probabilistic, it predicts the most likely useful output, and that output can vary between runs, or be confidently wrong with no obvious warning sign.`,
-   analogy:`A calculator is deterministic: two plus two is always four. A forecaster is probabilistic: tomorrow's prediction is the best guess based on the pattern, and tomorrow is still allowed to surprise you.`,
+   analogy:`A calculator is deterministic: two plus two is always four. A forecaster is probabilistic: tomorrow's prediction is the best guess based on the pattern, and tomorrow is still allowed to surprise you.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>The org chart stays deterministic even when the product does not. QA, legal and support all assume repeatable behaviour, so the change programme is for them, not just the codebase.`,
    ask:`Are we still testing this feature with a pass/fail mindset built for deterministic software, or have we actually adapted QA for something that behaves like a forecast?`},
 
   {cat:'board', term:'LLMOps', aliases:'AI observability, ML operations for LLMs', tag:'Infrastructure', tagClass:'teal',
    hook:'DevOps, but for judgement instead of uptime.',
    def:`The practice of deploying, monitoring and improving AI features once they're live, tracking every request and response, watching cost and latency, running evals continuously, catching quality degradation before customers report it.`,
-   analogy:`Standard operations tools tell you if the server's down. LLMOps tells you if the AI has quietly started giving worse answers, costing more than expected, or failing in ways nobody's flagged yet.`,
+   analogy:`Standard operations tools tell you if the server's down. LLMOps tells you if the AI has quietly started giving worse answers, costing more than expected, or failing in ways nobody's flagged yet.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>The tooling is the easy purchase; the rota is the hard one. Someone must own model quality on a Tuesday in month nine, and if that name is not written down, you bought dashboards, not operations.`,
    ask:`If quality on this feature degraded 15% over the next month, would we see it on a dashboard, or find out from a support queue?`},
+
+  {cat:'board', term:'Model Routing & Unit Economics', aliases:'model cascades, right-sizing, cost per interaction', tag:'Must Know', tagClass:'brass',
+   hook:'The difference between AI features with margins and AI features with losses.',
+   def:`Sending each task to the cheapest model that does it well: small, fast models for the routine ninety percent, expensive frontier models for the rare hard cases, plus the discipline of knowing your cost per interaction.`,
+   analogy:`A triage nurse. Most cases are handled at the desk, a few go through to the consultant, and nobody sends a paper cut to surgery. The expensive time is protected for the work only the expensive time can do.</p><p class="card-analogy card-gotcha"><span class="label">The CPO gotcha</span>One model for everything is the most expensive sentence in AI product. Routing routinely halves serving cost without customers noticing, and if nobody can quote your cost per interaction, the margin surprise arrives with the invoice.`,
+   ask:`What does one interaction cost on this feature today, and which slice of the traffic genuinely needs the expensive model?`},
 ];
 
 const CATEGORIES = [
